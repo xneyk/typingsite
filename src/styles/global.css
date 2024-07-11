@@ -1,0 +1,37 @@
+:root {
+   --font-color: #202020;
+   --font-correct: #202020;
+   --font-incorrect: #FF4D4D;
+   --font-unwritten: #A4A4A4;
+
+   background-color: #FAFAFA;
+   font-family: monospace;
+   color: var(--font-color);
+}
+
+body {
+   display: flex;
+   flex-direction: column;
+   height: 100vh;
+   width: 100vw;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+}
+
+.ionicon {
+   fill: var(--font-unwritten);
+}
+
+@media (prefers-color-scheme: dark) {
+   :root {
+      --font-color: #FFFFFF;
+      --font-correct: #FFFFFF;
+      --font-incorrect: #FF4D4D;
+      --font-unwritten: #646464;
+
+      background-color: #2C2C2C;
+   }
+}
