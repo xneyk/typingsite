@@ -1,14 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { words } from '../../public/data/words';
 import '../styles/global.css';
 ---
 <Layout title='TypingSite:)'>
-	<div class="game-zone">
+	<div id="game-zone" class="game-zone">
 		<p id="timer">:D</p>
-		<div id="words">
-		</div>
-		
+		<div id="words"></div>
+		<input id="input" type="text" autofocus>
 	</div>
 </Layout>
 <style>
@@ -32,15 +30,20 @@ import '../styles/global.css';
 	#timer {
 		margin: 10px;
 		font-size: 24px;
+		font-weight: bold;
+		color: var(--font-unwritten);
 	}
 	
 </style>
 <script>
-import { words } from "../../public/data/words";
-
+	import { words } from "../../public/data/words";
+	const $game_zone: HTMLElement | null = document.getElementById("game-zone");
+	const $timer: HTMLElement | null = document.getElementById("timer");
+	const $words: HTMLElement | null = document.getElementById("words");
+	const $input: HTMLElement | null = document.getElementById("input");
+	
 	function startTimer() {
 		let time: number = 30;
-		const $timer: HTMLElement | null = document.getElementById("timer");
 		$timer && ($timer.textContent = time.toString());
 	
 		const Countdown = setInterval(() => {
@@ -51,7 +54,6 @@ import { words } from "../../public/data/words";
 		}, 1000);
 	}
 
-	const $words: HTMLElement | null = document.getElementById("words");
 
 
 	function initGame() {
@@ -78,6 +80,11 @@ import { words } from "../../public/data/words";
 			}
 		</word>`
 	}
+
+	// Control input focus (input is invisible).
+	$game_zone?.addEventListener("click", () => {
+		$input?.focus();
+	});
 
 	initGame(); // Let's play :D
 </script>
