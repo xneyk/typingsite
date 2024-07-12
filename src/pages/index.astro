@@ -1,9 +1,83 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import { words } from '../../public/data/words';
+import '../styles/global.css';
 ---
 <Layout title='TypingSite:)'>
-	<Header />
-	<Footer />
+	<div class="game-zone">
+		<p id="timer">:D</p>
+		<div id="words">
+		</div>
+		
+	</div>
 </Layout>
+<style>
+	.game-zone {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-self: center;
+		width: 70%;
+	}
+
+	#words {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	
+	.correct {
+		color: var(--font-correct);
+	}
+
+	#timer {
+		margin: 10px;
+		font-size: 24px;
+	}
+	
+</style>
+<script>
+import { words } from "../../public/data/words";
+
+	function startTimer() {
+		let time: number = 30;
+		const $timer: HTMLElement | null = document.getElementById("timer");
+		$timer && ($timer.textContent = time.toString());
+	
+		const Countdown = setInterval(() => {
+			// $timer!.innerText = initialTime.toString(); <-- Compact syntax.
+			--time;
+			$timer && ($timer.textContent = time.toString()); // $timer can be null so we need to protect
+			if (time === 0) clearInterval(Countdown); // GameOver
+		}, 1000);
+	}
+
+	const $words: HTMLElement | null = document.getElementById("words");
+
+
+	function initGame() {
+		startTimer();
+		fetchWords();
+	}
+
+	// It clears the old words that where at words-zone and replace it by 30 new random words.
+	function fetchWords() {
+		$words && ($words.innerHTML = '');
+		const NUMBER_OF_WORDS = words.length;
+		for (let i = 0; i < 30; ++i) {
+			let random = Math.floor(Math.random() * NUMBER_OF_WORDS);
+			buildAndRenderWord(words[random]);
+		}
+	}
+
+	// Given a words, split it by letters and render it in the DOM.
+	function buildAndRenderWord(word: string): void {
+		const letters = word.split('');
+		$words!.innerHTML += `<word>
+			${
+				letters.map((letter) => `<letter>${letter}</letter>`).join('')
+			}
+		</word>`
+	}
+
+	initGame(); // Let's play :D
+</script>

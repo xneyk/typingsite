@@ -1,6 +1,6 @@
 :root {
    --font-color: #202020;
-   --font-correct: #202020;
+   --font-correct: #72D249;
    --font-incorrect: #FF4D4D;
    --font-unwritten: #A4A4A4;
 
@@ -12,8 +12,17 @@
 body {
    display: flex;
    flex-direction: column;
+   justify-content: space-between;
    height: 100vh;
    width: 100vw;
+}
+
+word {
+   display: flex;
+   font-size: 24px;
+   font-weight: bold;
+   margin: 2px 10px 2px 10px;
+   color: var(--font-unwritten);
 }
 
 * {
@@ -28,8 +37,6 @@ body {
 @media (prefers-color-scheme: dark) {
    :root {
       --font-color: #FFFFFF;
-      --font-correct: #FFFFFF;
-      --font-incorrect: #FF4D4D;
       --font-unwritten: #646464;
 
       background-color: #2C2C2C;
