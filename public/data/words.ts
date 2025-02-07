@@ -199,4 +199,4 @@ export const words: string[] = [
    "reach",
    "dark",
    "awful",
-]
+];

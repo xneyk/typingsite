@@ -25,6 +25,14 @@ word {
    color: var(--font-unwritten);
 }
 
+.correct_letter {
+   color: var(--font-correct);
+}
+
+.incorrect_letter {
+   color: var(--font-incorrect);
+}
+
 * {
    margin: 0;
    padding: 0;

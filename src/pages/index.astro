@@ -36,11 +36,11 @@ import '../styles/global.css';
 	
 </style>
 <script>
-	import { words } from "../../public/data/words";
+	import { words } from "../../public/data/words"; // it can be modified for getting the words via API. (can be a good portfolio idea:D)
 	const $game_zone: HTMLElement | null = document.getElementById("game-zone");
 	const $timer: HTMLElement | null = document.getElementById("timer");
 	const $words: HTMLElement | null = document.getElementById("words");
-	const $input: HTMLElement | null = document.getElementById("input");
+	const $input: HTMLFormElement | null = document.getElementById("input") as HTMLFormElement;
 	
 	function startTimer() {
 		let time: number = 30;
@@ -81,9 +81,15 @@ import '../styles/global.css';
 		</word>`
 	}
 
+	// let $currentWord = document.getElementById("current");
+
 	// Control input focus (input is invisible).
 	$game_zone?.addEventListener("click", () => {
 		$input?.focus();
+	});
+
+	$input.addEventListener("keydown", () => {
+
 	});
 
 	initGame(); // Let's play :D
